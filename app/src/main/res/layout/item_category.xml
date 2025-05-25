@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_container"
+    android:layout_width="120dp"
+    android:layout_height="140dp"
+    android:orientation="vertical"
+    android:layout_marginEnd="12dp"
+    android:background="@drawable/bg_category_beige"
+    android:padding="12dp">
+
+    <!-- Hình ảnh chồng -->
+
+    <FrameLayout
+        android:layout_width="101dp"
+        android:layout_height="86dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tvCount"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end|top"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_count_circle"
+            android:gravity="center"
+            android:text="8"
+            android:textColor="#FFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/hoodie" />
+
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/shirt" />
+
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="22dp"
+            android:src="@drawable/sneaker" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vacation"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"/>
+</LinearLayout>
