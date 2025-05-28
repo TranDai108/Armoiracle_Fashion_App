@@ -52,7 +52,6 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_add -> {
-                    // TODO: Thêm logic cho nav_add (ví dụ: mở một fragment mới)
                     true
                 }
                 R.id.nav_clothes -> {

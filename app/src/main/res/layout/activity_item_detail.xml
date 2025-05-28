@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F4"
+    android:id="@id/main"
+    android:padding="16dp">
+
+    <!-- Tiêu đề "Item" -->
+
+    <!-- Hình ảnh món đồ -->
+
+    <TextView
+        android:id="@+id/tvItemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:text="Item Detail"
+        android:textColor="#222222"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Nút chỉnh sửa hình ảnh -->
+
+    <!-- Nhãn và trường nhập liệu -->
+    <ImageView
+        android:id="@+id/ivItemPicture"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Item Picture"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvItemTitle" />
+
+    <Button
+        android:id="@+id/btnEditPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_button_unveil"
+        android:text="Edit Picture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivItemPicture" />
+
+    <TextView
+        android:id="@+id/tvNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/btnEditPicture"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter name"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@id/tvNameLabel"
+        app:layout_constraintBottom_toBottomOf="@id/tvNameLabel"
+        app:layout_constraintStart_toEndOf="@id/tvNameLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvStyleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Style:"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/tvNameLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/etStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter style"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@id/tvStyleLabel"
+        app:layout_constraintBottom_toBottomOf="@id/tvStyleLabel"
+        app:layout_constraintStart_toEndOf="@id/tvStyleLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type: Top/Bottom/Accessory/Shoes"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/tvStyleLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@id/tvTypeLabel"
+        app:layout_constraintBottom_toBottomOf="@id/tvTypeLabel"
+        app:layout_constraintStart_toEndOf="@id/tvTypeLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSizeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Size:"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/tvTypeLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/etSize"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter size"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@id/tvSizeLabel"
+        app:layout_constraintBottom_toBottomOf="@id/tvSizeLabel"
+        app:layout_constraintStart_toEndOf="@id/tvSizeLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvColorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color:"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/etColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter color"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@id/tvColorLabel"
+        app:layout_constraintBottom_toBottomOf="@id/tvColorLabel"
+        app:layout_constraintStart_toEndOf="@id/tvColorLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMaterialLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Material:"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/tvColorLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/etMaterial"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter material"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@id/tvMaterialLabel"
+        app:layout_constraintBottom_toBottomOf="@id/tvMaterialLabel"
+        app:layout_constraintStart_toEndOf="@id/tvMaterialLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBrandLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brand:"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/tvMaterialLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/etBrand"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter brand"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@id/tvBrandLabel"
+        app:layout_constraintBottom_toBottomOf="@id/tvBrandLabel"
+        app:layout_constraintStart_toEndOf="@id/tvBrandLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvWeatherLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weather: All"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/tvBrandLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spWeather"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@id/tvWeatherLabel"
+        app:layout_constraintBottom_toBottomOf="@id/tvWeatherLabel"
+        app:layout_constraintStart_toEndOf="@id/tvWeatherLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Nút Exit và Save -->
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:background="@drawable/bg_button_unveil"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:background="@drawable/bg_button_selected"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -166,7 +166,7 @@
             android:text="Đăng nhập bằng Google"
             android:textSize="14sp"
             app:cornerRadius="12dp"
-            android:backgroundTint="#DB4437"
+            android:backgroundTint="#C86A78"
             android:textColor="@android:color/white"
             android:layout_marginTop="8dp" />
 

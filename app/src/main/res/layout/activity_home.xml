@@ -5,6 +5,7 @@
     android:id="@+id/homepage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/Theme.Normal"
     android:background="#F2F2F1">
 
     <!-- Container cho Fragment -->
