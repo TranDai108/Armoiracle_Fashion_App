@@ -1,0 +1,3 @@
+<resources>
+    <attr name="descriptionTextColor" format="color" />
+</resources>
