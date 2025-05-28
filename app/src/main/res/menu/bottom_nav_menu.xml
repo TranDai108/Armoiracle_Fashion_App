@@ -1,22 +1,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--<item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
-        android:title="" />
+
     <item
-        android:id="@+id/nav_bookmark"
-        android:icon="@drawable/ic_bookmark"
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home"
         android:title="" />
+
+    <item
+        android:id="@+id/nav_stack"
+        android:icon="@drawable/user"
+        android:title="" />
+
     <item
         android:id="@+id/nav_add"
-        android:icon="@drawable/ic_add"
+        android:icon="@drawable/add"
         android:title="" />
+
     <item
-        android:id="@+id/nav_timer"
-        android:icon="@drawable/ic_timer"
+        android:id="@+id/nav_clothes"
+        android:icon="@drawable/dailyclothes"
         android:title="" />
+
     <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_profile"
-        android:title="" />-->
+        android:id="@+id/nav_box"
+        android:icon="@drawable/quizz"
+        android:title="" />
+
 </menu>

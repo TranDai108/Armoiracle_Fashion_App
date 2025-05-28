@@ -1,5 +1,6 @@
 package com.example.armoiraclefashionapp.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.armoiraclefashionapp.R
 import com.example.armoiraclefashionapp.model.WardrobeItem
 
-class WardrobeAdapter(private val items: List<WardrobeItem>) :
-    RecyclerView.Adapter<WardrobeAdapter.WardrobeViewHolder>() {
+class WardrobeHorizontalAdapter(private val items: List<WardrobeItem>) :
+    RecyclerView.Adapter<WardrobeHorizontalAdapter.WardrobeViewHolder>() {
 
     inner class WardrobeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // 1 ảnh chính
         val imgItem: ImageView = itemView.findViewById(R.id.imgItem)
-        // pill–label
         val tvLabel: TextView = itemView.findViewById(R.id.tvLabel)
-        // tiêu đề bên dưới
         val tvTitle: TextView = itemView.findViewById(R.id.tvWardrobeItemTitle)
     }
 
@@ -29,20 +27,29 @@ class WardrobeAdapter(private val items: List<WardrobeItem>) :
 
     override fun onBindViewHolder(holder: WardrobeViewHolder, position: Int) {
         val item = items[position]
+        var label = ""
+        // Gán hình ảnh dựa theo kiểu FromRes hay FromUri
+        when (item) {
+            is WardrobeItem.FromRes -> {
+                holder.imgItem.setImageResource(item.imageResId)
+                holder.tvTitle.text = item.title
+                holder.tvLabel.text = item.label
+                label = item.label
+            }
+            is WardrobeItem.FromUri -> {
+                holder.imgItem.setImageURI(item.imageUri)
+                holder.tvTitle.text = item.title
+                holder.tvLabel.text = item.label
+                label = item.label
+            }
+        }
 
-        // 1 ảnh duy nhất
-        holder.imgItem.setImageResource(item.imageResId)
-        // tiêu đề
-        holder.tvTitle.text = item.title
-        // label góc trên
-        holder.tvLabel.text = item.label
-
-        // (tuỳ chọn): đổi màu pill tuỳ label
-        val bg = when (item.label) {
-            "Cap"    -> R.drawable.bg_label
-            "Pant"   -> R.drawable.bg_label
+        // Tùy chỉnh background cho nhãn
+        val bg = when (label) {
+            "Cap" -> R.drawable.bg_label
+            "Pant" -> R.drawable.bg_label
             "Hoodie" -> R.drawable.bg_label
-            else     -> R.drawable.bg_label
+            else -> R.drawable.bg_label
         }
         holder.tvLabel.setBackgroundResource(bg)
     }

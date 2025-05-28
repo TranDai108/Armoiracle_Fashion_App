@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#E6F3DA" /> <!-- Màu xanh lá nhạt để đánh dấu đã chọn -->
+    <corners android:radius="8dp" />
+    <stroke
+        android:width="2dp"
+        android:color="#FFD700" /> <!-- Giữ viền vàng zigzag -->
+</shape>
