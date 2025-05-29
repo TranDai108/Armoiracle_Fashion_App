@@ -17,24 +17,29 @@ class QuizResultActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_quiz_result)
 
-        // Danh sách các background để random
-        val backgroundList = listOf(
-            R.drawable.result_jun_bg,
-            R.drawable.result_toki_bg,
-            R.drawable.result_kiba_bg,
-            R.drawable.result_sora_bg,
-            R.drawable.result_hikari_bg
+        val matchPersonality = intent.getStringExtra("match_personality") ?: ""
+
+        // Ánh xạ tên personality → resource drawable
+        val backgroundMap = mapOf(
+            "Jun" to R.drawable.result_jun_bg,
+            "Toki" to R.drawable.result_toki_bg,
+            "Kiba" to R.drawable.result_kiba_bg,
+            "Sora" to R.drawable.result_sora_bg,
+            "Hikari" to R.drawable.result_hikari_bg
         )
 
-        // Logic de xu ly ket qua nhom tinh cach nao
-        val randomBackground = backgroundList.random()
+        // Lấy background theo matchPersonality
+        val randomBackground = backgroundMap[matchPersonality] ?: R.drawable.result_jun_bg
+
+        // Cập nhật background
         findViewById<ConstraintLayout>(R.id.main).setBackgroundResource(randomBackground)
-        val btn_back = findViewById<ImageButton>(R.id.back_button)
-        btn_back.setOnClickListener {
+
+        // Xử lý back button
+        findViewById<ImageButton>(R.id.back_button).setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Xác định mô tả dựa trên background được chọn
+        // Mô tả tương ứng với background
         val description = when (randomBackground) {
             R.drawable.result_jun_bg -> "Nhóm truyền thống, gọn gàng → Tượng trưng cho sự tinh giản, nền nếp, thanh lịch."
             R.drawable.result_toki_bg -> "Nhóm năng động, thực tế → Nhịp sống nhanh, luôn vận động, biết tận dụng thời cơ."
@@ -43,8 +48,9 @@ class QuizResultActivity : AppCompatActivity() {
             R.drawable.result_hikari_bg -> "Nhóm thân thiện, ấm áp → Ánh sáng dịu dàng, lan tỏa sự ấm áp và tích cực đến mọi người."
             else -> "Khám phá bản thân bạn!"
         }
-        // Cập nhật UI
+
         findViewById<TextView>(R.id.personality_description).text = description
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

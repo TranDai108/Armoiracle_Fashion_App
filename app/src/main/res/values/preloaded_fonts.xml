@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/baloo_tammudu</item>
+        <item>@font/benne</item>
+        <item>@font/bodoni_moda</item>
         <item>@font/ibarra_real_nova</item>
         <item>@font/poppins_light</item>
+        <item>@font/sree_krushnadevaraya</item>
         <item>@font/yeseva_one</item>
+        <item>@font/zen_antique</item>
     </array>
 </resources>

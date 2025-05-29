@@ -1,144 +1,164 @@
 package com.example.armoiraclefashionapp
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import android.widget.ProgressBar
-import androidx.core.view.WindowInsetsCompat
-import android.widget.Toast
-import android.widget.SeekBar
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
+import android.os.Bundle
+import android.widget.*
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.armoiraclefashionapp.api.RetrofitInstance
+import com.example.armoiraclefashionapp.models.AnswerResponse
+import com.example.armoiraclefashionapp.models.QuestionResponse
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.launch
 
 class QuizQuestsActivity : AppCompatActivity() {
-    private var currentQuestion = 1
+    private var currentQuestion = 0
     private val totalQuestions = 10
-    private val questions = listOf(
-        "Câu hỏi mẫu: Bạn thích màu sắc nào nhất?",
-        "Câu hỏi 2: Bạn thích hoạt động nào?",
-        "Câu hỏi 3: Bạn thích thời tiết nào?",
-        "Câu hỏi 4: Bạn thích món ăn nào?",
-        "Câu hỏi 5: Bạn thích phong cách nào?",
-        "Câu hỏi 6: Bạn thích loại nhạc nào?",
-        "Câu hỏi 7: Bạn thích đi du lịch đâu?",
-        "Câu hỏi 8: Bạn thích thú cưng nào?",
-        "Câu hỏi 9: Bạn thích mùa nào nhất?",
-        "Câu hỏi 10: Bạn thích nghề nghiệp nào?"
+    private var personalties = mutableMapOf(
+        "Jun" to 0,
+        "Toki" to 0,
+        "Kiba" to 0,
+        "Sora" to 0,
+        "Hikari" to 0
     )
-    private val answers = listOf(
-        listOf("Đỏ", "Vàng", "Xanh"),
-        listOf("Đọc sách", "Thể thao", "Du lịch"),
-        listOf("Nắng", "Mưa", "Mát mẻ"),
-        listOf("Cơm", "Phở", "Bánh mì"),
-        listOf("Hiện đại", "Cổ điển", "Tự nhiên"),
-        listOf("Pop", "Rock", "Classical"),
-        listOf("Núi", "Biển", "Thành phố"),
-        listOf("Chó", "Mèo", "Chim"),
-        listOf("Xuân", "Hạ", "Thu"),
-        listOf("Lập trình", "Thiết kế", "Kinh doanh")
-    )
+    private lateinit var allQuestions: ArrayList<QuestionResponse>
+    private lateinit var questions: List<QuestionResponse>
+    private lateinit var allAnswers: List<List<AnswerResponse>>
+    private var isDone = false
+
     private val illustrations = listOf(
-        R.drawable.q1_illustration,
-        R.drawable.q2_illustration,
-        R.drawable.q3_illustration,
-        R.drawable.q4_illustration,
-        R.drawable.q5_illustration,
-        R.drawable.q6_illustration,
-        R.drawable.q7_illustration,
-        R.drawable.q8_illustration,
-        R.drawable.q9_illustration,
+        R.drawable.q1_illustration, R.drawable.q2_illustration, R.drawable.q3_illustration,
+        R.drawable.q4_illustration, R.drawable.q5_illustration, R.drawable.q6_illustration,
+        R.drawable.q7_illustration, R.drawable.q8_illustration, R.drawable.q9_illustration,
         R.drawable.q10_illustration
     )
+
     private val backgrounds = listOf(
-        R.drawable.q1_bg,
-        R.drawable.q2_bg,
-        R.drawable.q3_bg,
-        R.drawable.q4_bg,
-        R.drawable.q5_bg,
-        R.drawable.q6_bg,
-        R.drawable.q7_bg,
-        R.drawable.q8_bg,
-        R.drawable.q9_bg,
+        R.drawable.q1_bg, R.drawable.q2_bg, R.drawable.q3_bg,
+        R.drawable.q4_bg, R.drawable.q5_bg, R.drawable.q6_bg,
+        R.drawable.q7_bg, R.drawable.q8_bg, R.drawable.q9_bg,
         R.drawable.q10_bg
     )
 
-    // Danh sách để lưu câu trả lời của người dùng
-    private val userAnswers = mutableListOf<String>()
+    private val userAnswers = MutableList(totalQuestions) { "" }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_quiz_quests)
-        repeat(totalQuestions) { userAnswers.add("") }
 
-        // Cập nhật giao diện ban đầu
-        updateUI()
+        // Nhận danh sách câu hỏi từ Intent
+        allQuestions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableArrayListExtra("questions", QuestionResponse::class.java) ?: arrayListOf()
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableArrayListExtra("questions") ?: arrayListOf()
+        }
 
-        // Xử lý nút lùi
+        questions = if (allQuestions.size >= totalQuestions) {
+            allQuestions.shuffled().take(totalQuestions)
+        } else allQuestions
+
+        // Tải tất cả câu trả lời cho các câu hỏi đã chọn
+        lifecycleScope.launch {
+            allAnswers = questions.map { question ->
+                async {
+                    try {
+                        RetrofitInstance.api.getAnswers(question.idques)
+                    } catch (e: Exception) {
+                        emptyList()
+                    }
+                }
+            }.awaitAll()
+
+            // Sau khi có dữ liệu, cập nhật UI
+            updateUI()
+        }
+
+        setupUIEvents()
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupUIEvents() {
         findViewById<ImageButton>(R.id.back_button).setOnClickListener {
-            if (currentQuestion > 1) {
+            if (currentQuestion > 0) {
                 currentQuestion--
                 updateUI()
             }
         }
 
-        // Xử lý nút tiến
         findViewById<ImageButton>(R.id.next_button).setOnClickListener {
-            if (currentQuestion < totalQuestions) {
+            if (currentQuestion < totalQuestions - 1) {
                 currentQuestion++
                 updateUI()
             } else {
-                // Khi đến câu hỏi cuối, hiển thị thông báo và kết thúc
-                if (userAnswers.count{ it.isNotEmpty() } == totalQuestions)
-                {
-                    showResult()
-                    Toast.makeText(this, "Bạn đã hoàn thành khảo sát! Kết quả: $userAnswers", Toast.LENGTH_LONG).show()
+                if (userAnswers.any { it.isEmpty() }) {
+                    Toast.makeText(this, "Vui lòng trả lời hết tất cả câu hỏi!", Toast.LENGTH_SHORT).show()
+                } else {
+                    val match_personality = personalties.maxByOrNull { it.value }?.key
+                    showResult(match_personality ?: "Không xác định")
                 }
-                else
-                    Toast.makeText(this, "Bạn chưa hoàn thành toàn bộ câu hỏi, vui lòng điền đủ đáp án !", Toast.LENGTH_SHORT).show()
-
             }
         }
 
-        // Khoa khong cho nguoi dung dieu chinh thanh seekbar
-        findViewById<SeekBar>(R.id.progress_bar).setOnTouchListener { _, _ ->
-            true // Chặn tất cả tương tác
-        }
-
-        // Xử lý lựa chọn câu trả lời
         val answerButtons = listOf(
             findViewById<Button>(R.id.button_ans_1),
             findViewById<Button>(R.id.button_ans_2),
             findViewById<Button>(R.id.button_ans_3)
         )
+
         answerButtons.forEachIndexed { index, button ->
             button.setOnClickListener {
-                // Lưu câu trả lời của người dùng
-                userAnswers[currentQuestion - 1] = answers[currentQuestion - 1][index]
+                if (index >= allAnswers[currentQuestion].size) return@setOnClickListener
 
-                // Chuyển sang câu hỏi tiếp theo (nếu chưa phải câu cuối)
-                if (currentQuestion < totalQuestions) {
-                    currentQuestion++
-                    updateUI()
-                } else {
-                    if (userAnswers.count{ it.isNotEmpty() } == totalQuestions)
-                    {
-                        showResult()
-                        Toast.makeText(this, "Bạn đã hoàn thành khảo sát! Kết quả: $userAnswers", Toast.LENGTH_LONG).show()
+                // Ghi nhận câu trả lời
+                val selectedAnswer = allAnswers[currentQuestion][index]
+                userAnswers[currentQuestion] = selectedAnswer.answer
+
+                // Nếu người dùng đã chọn trước đó, rollback điểm personality cũ (nếu cần thiết)
+                // Bỏ qua nếu bạn không cần tính lại điểm khi người dùng quay lại
+
+                lifecycleScope.launch {
+                    try {
+                        val responses = RetrofitInstance.api.getPersonal(selectedAnswer.idans)
+
+                        // Tăng điểm cho personality tương ứng
+                        responses.forEach { response ->
+                            val name = response.name
+                            if (personalties.containsKey(name)) {
+                                personalties[name] = personalties[name]!! + 1
+                            }
+                        }
+
+                        // Nếu là câu cuối cùng và tất cả câu đã trả lời → hiện kết quả
+                        if (currentQuestion == totalQuestions - 1 && userAnswers.none { it.isEmpty() }) {
+                            isDone = true
+                            val match_personality = personalties.maxByOrNull { it.value }?.key
+                            showResult(match_personality ?: "Không xác định")
+                        } else {
+                            // Nếu chưa phải câu cuối → chuyển sang câu tiếp
+                            currentQuestion++
+                            updateUI()
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(this@QuizQuestsActivity, "Lỗi khi lấy dữ liệu personality", Toast.LENGTH_SHORT).show()
                     }
-                    else
-                        Toast.makeText(this, "Bạn chưa hoàn thành toàn bộ câu hỏi, vui lòng điền đủ đáp án !", Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
-        // Xử lý WindowInsets
+
+        findViewById<SeekBar>(R.id.progress_bar).setOnTouchListener { _, _ -> true }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_quiz_quests)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -146,54 +166,40 @@ class QuizQuestsActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateUI() {
-        // Cập nhật thanh tiến trình
-        val progress = (currentQuestion.toFloat() / totalQuestions.toFloat() * 100).toInt()
+        val progress = ((currentQuestion + 1).toFloat() / totalQuestions * 100).toInt()
         findViewById<ProgressBar>(R.id.progress_bar).progress = progress
 
-        // Cập nhật background
-        findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.activity_quiz_quests)
-            ?.setBackgroundResource(backgrounds[currentQuestion - 1])
+        findViewById<ConstraintLayout>(R.id.activity_quiz_quests)
+            .setBackgroundResource(backgrounds[currentQuestion])
 
-        // Cập nhật số thứ tự câu hỏi
-        findViewById<TextView>(R.id.question_number).text = "Question $currentQuestion"
+        findViewById<TextView>(R.id.question_number).text = "Câu hỏi ${currentQuestion + 1}"
+        findViewById<ImageView>(R.id.imageView).setImageResource(illustrations[currentQuestion])
+        findViewById<TextView>(R.id.question_text).text = questions[currentQuestion].question
 
-        // Cập nhật hình minh họa
-        findViewById<ImageView>(R.id.imageView).setImageResource(illustrations[currentQuestion - 1])
-        findViewById<ImageView>(R.id.imageView).contentDescription = "Question $currentQuestion - illustration"
-
-        // Cập nhật câu hỏi
-        findViewById<TextView>(R.id.question_text).text = questions[currentQuestion - 1]
-
-        // Cập nhật các lựa chọn trả lời
         val answerButtons = listOf(
             findViewById<Button>(R.id.button_ans_1),
             findViewById<Button>(R.id.button_ans_2),
             findViewById<Button>(R.id.button_ans_3)
         )
-        val currentAnswers = answers[currentQuestion - 1]
-        for (i in answerButtons.indices) {
-            answerButtons[i].text = currentAnswers[i]
-        }
 
-        // Hiển thị lại câu trả lời đã chọn (nếu có)
-        val selectedAnswer = userAnswers[currentQuestion - 1]
-        if (selectedAnswer.isNotEmpty()) {
-            answerButtons.forEachIndexed { index, button ->
-                if (button.text == selectedAnswer) {
-                    // Có thể thêm hiệu ứng (ví dụ: đổi màu nền) để đánh dấu câu trả lời đã chọn
-                    button.setBackgroundResource(R.drawable.bg_button_selected)
-                } else {
-                    button.setBackgroundResource(R.drawable.bg_button_unveil) // Khôi phục nền mặc định
-                }
+        allAnswers.getOrNull(currentQuestion)?.let { answers ->
+            answerButtons.forEachIndexed { i, button ->
+                button.text = answers.getOrNull(i)?.answer ?: "Không có đáp án"
+                button.setBackgroundResource(
+                    if (button.text == userAnswers[currentQuestion]) R.drawable.bg_button_selected
+                    else R.drawable.bg_button_unveil
+                )
             }
         }
     }
 
-    private fun showResult() {
+    private fun showResult(match_personality:String) {
         val intent = Intent(this, QuizResultActivity::class.java)
+        intent.putExtra("match_personality", match_personality)
         startActivity(intent)
-        finish() // Kết thúc QuizQuestsActivity
+        finish()
     }
 
     override fun attachBaseContext(newBase: Context?) {

@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.net.toUri
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,7 @@ class SplashScreenActivity : AppCompatActivity() {
         val videoView = findViewById<VideoView>(R.id.videoViewSplash)
         val videoPath = "android.resource://"+ packageName + "/" + R.raw.splash_activity
 
-        val videoUri = Uri.parse(videoPath)
+        val videoUri = videoPath.toUri()
         videoView.setVideoURI(videoUri)
         videoView.start()
 

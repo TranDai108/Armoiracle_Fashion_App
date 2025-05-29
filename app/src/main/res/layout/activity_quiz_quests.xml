@@ -68,10 +68,11 @@
 
     <TextView
         android:id="@+id/question_text"
-        android:layout_width="272dp"
-        android:layout_height="47dp"
+        android:layout_width="269dp"
+        android:layout_height="57dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_light"
         android:text="Câu hỏi 1: Bạn thích màu sắc nào nhất?"
         android:textColor="#FFFCEB"
         android:textSize="18sp"
@@ -102,8 +103,10 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:background="@drawable/bg_button_unveil"
+            android:fontFamily="@font/baloo_tammudu"
             android:padding="12dp"
             android:text="Đỏ"
+            android:textAllCaps="false"
             android:textColor="#333333" />
 
         <Button
@@ -113,8 +116,10 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:background="@drawable/bg_button_unveil"
+            android:fontFamily="@font/baloo_tammudu"
             android:padding="12dp"
             android:text="Vàng"
+            android:textAllCaps="false"
             android:textColor="#333333" />
 
         <!-- Box câu trả lời 3 -->
@@ -125,8 +130,10 @@
             android:layout_gravity="center"
             android:layout_marginBottom="88dp"
             android:background="@drawable/bg_button_unveil"
+            android:fontFamily="@font/baloo_tammudu"
             android:padding="12dp"
             android:text="Xanh"
+            android:textAllCaps="false"
             android:textColor="#333333" />
     </LinearLayout>
 
