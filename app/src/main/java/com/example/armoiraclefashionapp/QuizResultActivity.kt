@@ -1,6 +1,8 @@
 package com.example.armoiraclefashionapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,7 +29,10 @@ class QuizResultActivity : AppCompatActivity() {
         // Logic de xu ly ket qua nhom tinh cach nao
         val randomBackground = backgroundList.random()
         findViewById<ConstraintLayout>(R.id.main).setBackgroundResource(randomBackground)
-
+        val btn_back = findViewById<ImageButton>(R.id.back_button)
+        btn_back.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         // Xác định mô tả dựa trên background được chọn
         val description = when (randomBackground) {
