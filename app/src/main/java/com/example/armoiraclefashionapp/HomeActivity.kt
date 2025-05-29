@@ -1,7 +1,12 @@
 package com.example.armoiraclefashionapp
 
+import UserResponse
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -71,6 +76,15 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(sys.left, sys.top, sys.right, sys.bottom)
             insets
         }
+
+        val user: UserResponse? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("user", UserResponse::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra("user")
+        }
+
+        Log.d("HomeActivity", "User: $user")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -91,5 +105,12 @@ class HomeActivity : AppCompatActivity() {
                 .addToBackStack(null)
                 .commit()
         }
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        val config = Configuration(newBase?.resources?.configuration)
+        config.fontScale = 1.0f
+        applyOverrideConfiguration(config)
+        super.attachBaseContext(newBase)
     }
 }

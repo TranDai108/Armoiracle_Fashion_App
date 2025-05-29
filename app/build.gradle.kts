@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -39,8 +40,8 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0");  // hoặc phiên bản mới nhất
-    implementation ("com.google.android.material:material:1.9.0")
+    implementation(libs.androidx.core.ktx.v1120)
+    implementation(libs.material.v1110)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -55,4 +56,6 @@ dependencies {
     implementation(libs.material.v1110)
     implementation(libs.circleimageview)
     implementation(libs.androidx.cardview)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }

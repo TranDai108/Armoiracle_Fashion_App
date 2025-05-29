@@ -1,5 +1,6 @@
 package com.example.armoiraclefashionapp
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import android.widget.Toast
 import android.widget.SeekBar
 import android.content.Intent
+import android.content.res.Configuration
 
 class QuizQuestsActivity : AppCompatActivity() {
     private var currentQuestion = 1
@@ -192,5 +194,12 @@ class QuizQuestsActivity : AppCompatActivity() {
         val intent = Intent(this, QuizResultActivity::class.java)
         startActivity(intent)
         finish() // Kết thúc QuizQuestsActivity
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        val config = Configuration(newBase?.resources?.configuration)
+        config.fontScale = 1.0f
+        applyOverrideConfiguration(config)
+        super.attachBaseContext(newBase)
     }
 }
