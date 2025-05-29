@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.armoiraclefashionapp.adapter.FollowAdapter
 import com.example.armoiraclefashionapp.adapter.WardrobeHorizontalAdapter
 import com.example.armoiraclefashionapp.model.WardrobeItem
+import com.example.armoiraclefashionapp.models.FollowItem
 
 class HomeFragment : Fragment() {
     override fun onCreateView(
@@ -41,9 +43,12 @@ class HomeFragment : Fragment() {
         // === RECOMMENDATION (rvFollow) ===
         val rvFollow = view.findViewById<RecyclerView>(R.id.rvFollow)
         rvFollow.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        // TODO: Thêm adapter hiển thị gợi ý nếu có
-        // val followItems = listOf(...)
-        // rvFollow.adapter = FollowAdapter(followItems)
+        val followItems = listOf(
+            FollowItem("Fashionista1", R.drawable.hoodie, "Casual style for daily wear"),
+            FollowItem("TrendyUser", R.drawable.cap, "Sporty look for weekends"),
+            FollowItem("StyleGuru", R.drawable.shirt, "Elegant outfit for events")
+        )
+        rvFollow.adapter = FollowAdapter(followItems)
 
         return view
     }
