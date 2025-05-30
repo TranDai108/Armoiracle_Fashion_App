@@ -6,7 +6,7 @@
         android:title="" />
 
     <item
-        android:id="@+id/nav_stack"
+        android:id="@+id/nav_me"
         android:icon="@drawable/user"
         android:title="" />
 

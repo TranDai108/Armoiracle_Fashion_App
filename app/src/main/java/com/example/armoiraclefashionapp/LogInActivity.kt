@@ -27,10 +27,11 @@ class LogInActivity : AppCompatActivity() {
         val remember = sharedPreferences.getBoolean("remember", false)
         if (remember) {
             val userID = sharedPreferences.getString("id", "")
-            if (userID != null) {
+            if (userID != "") {
                 val intent = Intent(this, HomeActivity::class.java)
                 intent.putExtra("id", userID)
                 startActivity(intent)
+                finish()
             }
         }
 
@@ -82,6 +83,7 @@ class LogInActivity : AppCompatActivity() {
                         val intent = Intent(this@LogInActivity, HomeActivity::class.java)
                         intent.putExtra("user", user)
                         startActivity(intent)
+                        finish()
                     } catch (e: HttpException) {
                         Log.e("Lỗi", e.message.toString())
                         when (e.code()) {

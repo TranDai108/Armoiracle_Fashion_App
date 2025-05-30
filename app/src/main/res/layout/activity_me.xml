@@ -267,7 +267,7 @@
 
     <!-- Button Đăng xuất -->
     <Button
-        android:id="@+id/logoutButton"
+        android:id="@+id/btnLogOut"
         android:text="Đăng xuất"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -277,7 +277,21 @@
         android:textSize="16sp"
         app:cornerRadius="12dp"
         app:layout_constraintTop_toBottomOf="@id/supportSection"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/btnDelAcc"
+        android:text="Xóa tài khoản"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#f00"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@id/btnLogOut"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"/>

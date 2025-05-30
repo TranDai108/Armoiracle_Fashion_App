@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -85,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phoneEditText"
+            android:id="@+id/edtPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/birthdayEditText"
+            android:id="@+id/edtBirthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"
@@ -145,7 +145,7 @@
         android:elevation="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/avatar"
+            android:id="@+id/ivAvatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_avatar_placeholder"
@@ -153,26 +153,26 @@
             app:civ_border_width="3dp" />
 
         <ImageButton
-            android:id="@+id/editStyleButton"
+            android:id="@+id/ibEdit"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:layout_gravity="bottom|end"
             android:background="@drawable/circle_white_background"
-            android:padding="6dp"
-            android:src="@drawable/twotone_photo_camera_24"
             android:contentDescription="Chỉnh sửa ảnh"
+            android:padding="6dp"
             android:scaleType="centerInside"
+            android:src="@drawable/twotone_photo_camera_24"
             android:translationZ="0.5dp"
             app:tint="#3F51B5" />
     </FrameLayout>
 
     <!-- Nút tiếp tục -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/continueButton"
+        android:id="@+id/btnComplete"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginTop="50dp"
-        android:text="Tiếp tục"
+        android:text="Hoàn thành"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:fontFamily="sans-serif-medium"

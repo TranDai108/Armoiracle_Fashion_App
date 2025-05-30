@@ -134,7 +134,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@id/btnLogIn"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintEnd_toEndOf="@id/guidelineEnd" />
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        android:padding="10dp"/>
 
     <!-- Hoặc -->
     <TextView
@@ -144,7 +145,6 @@
         android:text="Hoặc"
         android:textSize="14sp"
         android:textColor="?attr/descriptionTextColor"
-        android:layout_marginTop="12dp"
         app:layout_constraintTop_toBottomOf="@id/tvToSignUp"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd" />

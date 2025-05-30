@@ -50,11 +50,9 @@ class HomeActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
-                R.id.nav_stack -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, WardrobeFragment())
-                        .addToBackStack(null)
-                        .commit()
+                R.id.nav_me -> {
+                    val intent = Intent(this, MeActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.nav_add -> {
@@ -101,7 +99,7 @@ class HomeActivity : AppCompatActivity() {
             R.id.nav_home -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HomeFragment())
                 .commit()
-            R.id.nav_stack, R.id.nav_clothes -> supportFragmentManager.beginTransaction()
+            R.id.nav_me, R.id.nav_clothes -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, WardrobeFragment())
                 .addToBackStack(null)
                 .commit()
