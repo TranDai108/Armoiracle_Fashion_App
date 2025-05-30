@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.armoiraclefashionapp.model.WardrobeItem
+import com.example.armoiraclefashionapp.models.WardrobeItem
 
 class WardrobeGridAdapter(private val items: MutableList<WardrobeItem>) :
     RecyclerView.Adapter<WardrobeGridAdapter.WardrobeViewHolder>() {

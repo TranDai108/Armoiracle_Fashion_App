@@ -284,8 +284,12 @@ class SignUpActivity1 : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 val iduser = getSharedPreferences("dataLogIn", MODE_PRIVATE).getString("id", "")
+                Log.d("Fix", iduser.toString())
                 RetrofitInstance.api.updateAvatar(iduser!!, body)
-            } catch (_: Exception) { }
+                Log.d("Fix", "a")
+            } catch (e: Exception) {
+                Log.d("Fix", e.message.toString())
+            }
         }
     }
 

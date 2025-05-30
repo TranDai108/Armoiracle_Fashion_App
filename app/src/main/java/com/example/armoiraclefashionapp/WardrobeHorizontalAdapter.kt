@@ -1,16 +1,15 @@
-package com.example.armoiraclefashionapp.adapter
+package com.example.armoiraclefashionapp
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.armoiraclefashionapp.R
-import com.example.armoiraclefashionapp.model.WardrobeItem
+import com.bumptech.glide.Glide
+import com.example.armoiraclefashionapp.models.ClothesResponse
 
-class WardrobeHorizontalAdapter(private val items: List<WardrobeItem>) :
+class WardrobeHorizontalAdapter(private val items: List<ClothesResponse>) :
     RecyclerView.Adapter<WardrobeHorizontalAdapter.WardrobeViewHolder>() {
 
     inner class WardrobeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,31 +26,20 @@ class WardrobeHorizontalAdapter(private val items: List<WardrobeItem>) :
 
     override fun onBindViewHolder(holder: WardrobeViewHolder, position: Int) {
         val item = items[position]
-        var label = ""
-        // Gán hình ảnh dựa theo kiểu FromRes hay FromUri
-        when (item) {
-            is WardrobeItem.FromRes -> {
-                holder.imgItem.setImageResource(item.imageResId)
-                holder.tvTitle.text = item.title
-                holder.tvLabel.text = item.label
-                label = item.label
-            }
-            is WardrobeItem.FromUri -> {
-                holder.imgItem.setImageURI(item.imageUri)
-                holder.tvTitle.text = item.title
-                holder.tvLabel.text = item.label
-                label = item.label
-            }
-        }
+        Glide.with(holder.itemView.context)
+            .load(item.picture)
+            .into(holder.imgItem)
+        holder.tvTitle.text = item.name
+        holder.tvLabel.text = item.type
 
         // Tùy chỉnh background cho nhãn
-        val bg = when (label) {
-            "Cap" -> R.drawable.bg_label
-            "Pant" -> R.drawable.bg_label
-            "Hoodie" -> R.drawable.bg_label
-            else -> R.drawable.bg_label
-        }
-        holder.tvLabel.setBackgroundResource(bg)
+//        val bg = when (label) {
+//            "Cap" -> R.drawable.bg_label
+//            "Pant" -> R.drawable.bg_label
+//            "Hoodie" -> R.drawable.bg_label
+//            else -> R.drawable.bg_label
+//        }
+        holder.tvLabel.setBackgroundResource(R.drawable.bg_label)
     }
 
     override fun getItemCount() = items.size
