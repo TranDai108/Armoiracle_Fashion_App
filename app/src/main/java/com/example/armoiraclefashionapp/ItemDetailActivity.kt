@@ -15,7 +15,7 @@ import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.armoiraclefashionapp.model.WardrobeItem
+import com.example.armoiraclefashionapp.models.WardrobeItem
 import java.util.Date
 
 class ItemDetailActivity : AppCompatActivity() {

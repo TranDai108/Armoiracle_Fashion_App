@@ -2,6 +2,7 @@ package com.example.armoiraclefashionapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
+import com.example.armoiraclefashionapp.api.RetrofitInstance
+import com.example.armoiraclefashionapp.models.UserStyleCreate
+import kotlinx.coroutines.launch
 
 class QuizResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +22,19 @@ class QuizResultActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_quiz_result)
 
+        val sharedPreferences = getSharedPreferences("dataLogIn", MODE_PRIVATE)
+        val iduser = sharedPreferences.getString("id", "")
         val matchPersonality = intent.getStringExtra("match_personality") ?: ""
+        lifecycleScope.launch {
+            try {
+                val styles = RetrofitInstance.api.getStylesByPersonality(matchPersonality)
+                styles.forEach {
+                    RetrofitInstance.api.createUserStyle(UserStyleCreate(iduser!!, it))
+                }
+            } catch (e: Exception) {
+                Log.e("QuizResultActivity", "Error fetching data: ${e.message.toString()}")
+            }
+        }
 
         // Ánh xạ tên personality → resource drawable
         val backgroundMap = mapOf(

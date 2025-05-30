@@ -2,6 +2,7 @@ package com.example.armoiraclefashionapp.api
 
 import UserResponse
 import com.example.armoiraclefashionapp.models.AnswerResponse
+import com.example.armoiraclefashionapp.models.ClothesResponse
 import com.example.armoiraclefashionapp.models.QuestionResponse
 import com.example.armoiraclefashionapp.models.UserCreate
 import com.example.armoiraclefashionapp.models.UserLogIn
@@ -15,6 +16,10 @@ import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
 import com.example.armoiraclefashionapp.models.PersonalityResponse
+import com.example.armoiraclefashionapp.models.StyleResponse
+import com.example.armoiraclefashionapp.models.UserStyleCreate
+import retrofit2.http.Query
+
 interface ApiService {
     @POST("users/login")
     suspend fun logIn(@Body user: UserLogIn): UserResponse
@@ -31,6 +36,7 @@ interface ApiService {
 
     @DELETE("users/{id}")
     suspend fun deleteUser(@Path("id") id: String): String
+
     @GET("/questions")
     suspend fun getQuests(): List<QuestionResponse>
 
@@ -39,4 +45,22 @@ interface ApiService {
 
     @GET("answers/{id}/personalities")
     suspend fun getPersonal(@Path("id") id: String): List<PersonalityResponse>
+
+    @GET("/users/{id}/styles")
+    suspend fun getStylesByUser(@Path("id") id: String): List<StyleResponse>
+
+    @GET("/styles/{id}/clothes")
+    suspend fun getAllClothesByStyle(@Path("id") id: String): List<ClothesResponse>
+
+    @GET("/users/{id}/clothes")
+    suspend fun getAllClothesByUser(@Path("id") id: String): List<ClothesResponse>
+
+    @GET("/users/{id}/recommend")
+    suspend fun getRecommendClothesByUser(@Path("id") id: String): List<ClothesResponse>
+
+    @POST("/user_styles")
+    suspend fun createUserStyle(@Body body: UserStyleCreate): UserStyleCreate
+
+    @GET("/personalities/name/{name}/styles")
+    suspend fun getStylesByPersonality(@Path("name") name: String): List<String>
 }

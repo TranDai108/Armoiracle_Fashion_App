@@ -26,13 +26,13 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/avatar"
+                android:id="@+id/civAvatar"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_avatar_placeholder"
-                app:civ_border_width="2dp"
                 app:civ_border_color="#555555"
-                android:scaleType="centerCrop" />
+                app:civ_border_width="2dp" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -45,7 +45,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/username"
+                    android:id="@+id/tvUsername"
                     android:text="Username"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -54,14 +54,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/birthdayGender"
+                    android:id="@+id/tvBirthGen"
                     android:text="Birthday + Gender"
                     android:textSize="14sp"
                     android:textColor="#333333" />
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/editStyleButton"
+                android:id="@+id/ibEditInfo"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -73,6 +73,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llStyles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -82,7 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/styles"
+                android:id="@+id/tvStyle"
                 android:text="#style"
                 android:textStyle="italic"
                 android:textSize="16sp"
@@ -121,18 +122,22 @@
 
             <Button
                 android:text="Thông tin tài khoản"
+                android:id="@+id/btnInfo"
                 style="@style/SectionButton" />
 
             <Button
                 android:text="Chỉnh sửa style"
+                android:id="@+id/btnEditStyle"
                 style="@style/SectionButton" />
 
             <Button
                 android:text="Thay đổi mật khẩu"
+                android:id="@+id/btnEditPassword"
                 style="@style/SectionButton" />
 
             <Button
                 android:text="Tủ đồ của tôi"
+                android:id="@+id/btnMyClothes"
                 style="@style/SectionButton" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -177,6 +182,7 @@
 
                 <Button
                     android:text="Cài đặt thông báo"
+                    android:id="@+id/btnNotify"
                     style="@style/SectionButton" />
 
             </FrameLayout>
@@ -195,6 +201,7 @@
 
                 <Button
                     android:text="Cài đặt giao diện"
+                    android:id="@+id/btnEditTheme"
                     style="@style/SectionButton" />
             </FrameLayout>
         </LinearLayout>

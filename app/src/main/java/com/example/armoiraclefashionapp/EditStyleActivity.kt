@@ -1,8 +1,10 @@
 package com.example.armoiraclefashionapp
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,6 +23,11 @@ class EditStyleActivity : AppCompatActivity() {
         }
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+        val llAutoEdit = findViewById<LinearLayout>(R.id.llAutoEdit)
+        llAutoEdit.setOnClickListener {
+            val intent = Intent(this, QuizStartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun attachBaseContext(newBase: Context?) {

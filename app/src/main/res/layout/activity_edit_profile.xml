@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/avatar"
+            android:id="@+id/civAvatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_avatar_placeholder"
@@ -85,6 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="admin"
+                    android:id="@+id/edtUsername"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,6 +100,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="admin"
+                    android:id="@+id/edtName"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,20 +118,20 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/male"
+                    android:id="@+id/rbMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nam" />
 
                 <RadioButton
-                    android:id="@+id/female"
+                    android:id="@+id/rbFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nữ"
                     android:layout_marginStart="12dp" />
 
                 <RadioButton
-                    android:id="@+id/other"
+                    android:id="@+id/rbOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Khác"
@@ -147,6 +149,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="admin@example.com"
+                    android:id="@+id/edtEmail"
                     android:inputType="textEmailAddress"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -161,6 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="0123456789"
+                    android:id="@+id/edtPhone"
                     android:inputType="phone"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,6 +179,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="26/05/2025"
+                    android:id="@+id/edtBirthday"
                     android:inputType="date"
                     android:focusable="false"
                     android:drawableEnd="@drawable/ic_calendar"
@@ -207,6 +212,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="180"
+                        android:id="@+id/edtWeight"
                         android:inputType="numberDecimal"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -222,6 +228,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="75"
+                        android:id="@+id/edtHeight"
                         android:inputType="numberDecimal"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -232,7 +239,7 @@
 
     <!-- Confirm Button -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/confirmButton"
+        android:id="@+id/btnConfirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Xác nhận"

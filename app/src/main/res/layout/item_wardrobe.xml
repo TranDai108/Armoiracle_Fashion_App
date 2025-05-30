@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="140dp"
-    android:layout_height="180dp"
-    android:layout_marginEnd="12dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_wardrobe_item"
+    android:padding="10dp">
 
-    <!-- 1. Nền bo góc -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_wardrobe_item" />
+    <!-- Bọc ảnh và tiêu đề trong LinearLayout -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="top|center_horizontal"
+        android:gravity="center_horizontal">
 
-    <!-- 2. Ảnh duy nhất -->
+        <!-- Ảnh -->
+        <ImageView
+            android:id="@+id/imgItem"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/hoodie" />
 
-    <!-- 3. Badge số lượng (nếu cần) -->
-    <!-- pill label góc phải trên -->
+        <!-- Tiêu đề nằm dưới ảnh -->
+        <TextView
+            android:id="@+id/tvWardrobeItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="start"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/ibarra_real_nova"
+            android:text="Wardrobe"
+            android:textColor="#222"
+            android:textSize="14sp" />
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imgItem"
-        android:layout_width="110dp"
-        android:layout_height="100dp"
-        android:layout_margin="14dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/hoodie" />
-
+    <!-- Label góc phải trên cùng -->
     <TextView
         android:id="@+id/tvLabel"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_gravity="end|top"
-        android:layout_margin="6dp"
         android:paddingHorizontal="8dp"
         android:background="@drawable/bg_label"
         android:text="Cap"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
-        android:textStyle="bold"/>
-
-    <!-- 4. Tiêu đề phía dưới -->
-    <TextView
-        android:id="@+id/tvWardrobeItemTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|bottom"
-        android:layout_margin="8dp"
-        android:fontFamily="@font/ibarra_real_nova"
-        android:text="Wardrobe"
-        android:textColor="#222"
-        android:textSize="14sp"
-        android:textStyle="normal" />
+        android:textStyle="bold" />
 </FrameLayout>

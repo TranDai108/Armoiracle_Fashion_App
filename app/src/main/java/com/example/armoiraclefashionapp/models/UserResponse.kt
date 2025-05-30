@@ -12,7 +12,7 @@ data class UserResponse(
     val avatar: String,
     val birthday: String,
     val zodiac: Int,
-    val weight: Int,
-    val height: Int,
+    var weight: Int,
+    var height: Int,
     val theme: Int
 ): Parcelable

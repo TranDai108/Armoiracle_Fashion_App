@@ -12,7 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.armoiraclefashionapp.model.WardrobeItem
+import com.example.armoiraclefashionapp.models.WardrobeItem
 import com.google.android.material.button.MaterialButton
 
 class WardrobeFragment : Fragment() {

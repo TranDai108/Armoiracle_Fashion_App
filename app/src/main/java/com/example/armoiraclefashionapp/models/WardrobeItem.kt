@@ -1,4 +1,4 @@
-package com.example.armoiraclefashionapp.model
+package com.example.armoiraclefashionapp.models
 
 import android.net.Uri
 
