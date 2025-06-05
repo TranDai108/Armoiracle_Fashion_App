@@ -30,7 +30,7 @@ class FollowAdapter(private val followItems: List<ClothesResponse>) :
             .load(item.picture)
             .into(holder.imageView)
         holder.nameTextView.text = item.name
-        holder.typeTextView.text = item.type
+        holder.typeTextView.text = item.author
     }
 
     override fun getItemCount(): Int = followItems.size

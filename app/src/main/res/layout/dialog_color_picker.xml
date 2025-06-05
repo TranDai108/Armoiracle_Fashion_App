@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.skydoves.colorpickerview.ColorPickerView
+        android:id="@+id/colorPickerView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <com.skydoves.colorpickerview.sliders.AlphaSlideBar
+        android:layout_marginTop="50dp"
+        android:id="@+id/alphaSlideBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:selector_AlphaSlideBar="@drawable/colorpickerview_wheel"
+        app:borderColor_AlphaSlideBar="@android:color/darker_gray"
+        app:borderSize_AlphaSlideBar="5"/>
+
+    <com.skydoves.colorpickerview.sliders.BrightnessSlideBar
+        android:layout_marginTop="20dp"
+        android:id="@+id/brightnessSlide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:selector_BrightnessSlider="@drawable/colorpickerview_wheel"
+    app:borderColor_BrightnessSlider="@android:color/darker_gray"
+    app:borderSize_BrightnessSlider="5"/>
+</LinearLayout>

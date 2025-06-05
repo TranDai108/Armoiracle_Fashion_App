@@ -44,7 +44,6 @@ dependencies {
     implementation(libs.material.v1110)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.annotation)
@@ -53,7 +52,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.material.v1110)
     implementation(libs.circleimageview)
     implementation(libs.androidx.cardview)
     implementation(libs.retrofit)
@@ -61,4 +59,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
+    implementation(libs.colorpickerview.v224)
+
 }

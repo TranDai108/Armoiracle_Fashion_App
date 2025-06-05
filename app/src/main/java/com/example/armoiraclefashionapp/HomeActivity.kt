@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowCompat
+import com.example.armoiraclefashionapp.models.CombineActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -56,6 +57,8 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_add -> {
+                    val intent = Intent(this, CombineActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.nav_clothes -> {

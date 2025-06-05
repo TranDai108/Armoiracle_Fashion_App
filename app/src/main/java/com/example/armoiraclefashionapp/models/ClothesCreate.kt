@@ -8,5 +8,6 @@ data class ClothesCreate(
     val material: String?,
     val brand: String?,
     val weather: String?,
-    val type: String?
+    val type: String?,
+    val author: String?
 )
