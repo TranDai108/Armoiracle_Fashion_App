@@ -52,6 +52,11 @@ Armoiracle is a personal wardrobe manager and smart outfit advisor. With this ap
 ## 🏗️ Architecture
 
 Armoiracle is built with a client-server architecture, cleanly separating the UI from data and business logic.
+<div align="center">
+  <p><strong>App Structure</strong></p>
+  <img src="./ScreenShots/AppStructure.png" alt="Loading Screen" width="500" />
+  <p><em>Mô hình tổng quan chương trình</em></p>
+</div>
 
 ### Android Mobile App (Frontend)
 
@@ -111,6 +116,51 @@ Personalization is implemented on the server and client using a rule-based appro
 ---
 
 ## 📸 Screenshots
+<div align="center">
+  <p><strong>Loading Screen</strong></p>
+  <img src="./ScreenShots/Loading_Screen.png" alt="Loading Screen" width="300"/>
+  <p><em>Màn hình loading.</em></p>
+</div>
+<br>
+
+<div align="center">
+  <p><strong>Login & Sign Up</strong></p>
+  <img src="./ScreenShots/Login_Screen.png" alt="Login Screen" width="500"/>
+  <p><em>Màn hình đăng nhập và đăng ký tài khoản.</em></p>
+</div>
+<br>
+
+<div align="center">
+  <p><strong>Home Screen & Recommendations</strong></p>
+  <img src="./ScreenShots/Home_Screen.png" alt="Home Screen" width="300"/>
+  <p><em>Màn hình chính với các gợi ý phối đồ cá nhân hóa.</em></p>
+</div>
+<br>
+
+<div align="center">
+  <p><strong>Style Quiz & Result</strong></p>
+  <img src="./ScreenShots/Quiz_Screen.png" alt="Quiz Screen" width="300"/>
+  <p><em>Giao diện bắt đầu bài trắc nghiệm xác định phong cách thời trang.</em></p>
+</div>
+<br>
+
+<div align="center">
+  <img src="./ScreenShots/Question_Screen.png" alt="Quiz Screen" width="600"/>
+  <p><em>Giao diện làm trắc nghiệm câu hỏi.</em></p>
+</div>
+<br>
+
+<div align="center">
+  <img src="./ScreenShots/Result_Screens.png" alt="Quiz Screen" width="600"/>
+  <p><em>Giao diện kết quả tính cách.</em></p>
+</div>
+<br>
+
+<div align="center">
+  <p><strong>Wardrobe Management</strong></p>
+  <img src="./ScreenShots/Insert_Screen.png" alt="Wardrobe Screen" width="500"/>
+  <p><em>Tủ đồ ảo nơi người dùng quản lý trang phục của mình.</em></p>
+</div>
 
 
 
